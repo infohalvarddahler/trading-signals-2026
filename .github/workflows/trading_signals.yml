@@ -1,0 +1,45 @@
+name: Trading Signals Daily
+
+on:
+  schedule:
+    - cron: '0 21 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  generate-signals:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install yfinance pandas pandas-ta openpyxl
+
+      - name: Run trading signal generator
+        run: python trading_signals.py
+
+      - name: Upload Excel results
+        uses: actions/upload-artifact@v4
+        with:
+          name: trading-signals-${{ github.run_number }}
+          path: trading_signals.xlsx
+          retention-days: 30
+
+      - name: Log completion
+        run: echo "Trading signals generated successfully"
+
+
+
