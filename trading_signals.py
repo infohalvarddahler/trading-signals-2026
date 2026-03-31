@@ -3,7 +3,7 @@
 # Generates buy/sell signals using RSI, Bollinger Bands, ADX, Volume Spike
 # Exports results to Excel. Edit TICKERS list to add your stocks.
 # Install: pip install yfinance pandas pandas-ta openpyxl
-# Run:     python trading_signals.py
+# Run:     python trading_signals.py 
 
 import yfinance as yf
 import pandas as pd
