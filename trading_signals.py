@@ -18,7 +18,7 @@ import sys
 # ============================================================
 
 # Your tickers (add as many as you want)
-TICKERS = ["MU", "EXOD", "DNB.OL"]
+TICKERS = ["MU", "EXOD", "NAS.OL", "DNB.OL"]
 
 # Number of days to show in output
 ANALYSIS_DAYS = 10
